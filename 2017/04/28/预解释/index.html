@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="预解释我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行 举个栗子：  console.log(obj);//undefined  var obj={nam">
+<meta name="description" content="预解释我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行举个栗子：…  console.log(obj);//undefined  var obj={nam">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="预解释">
 <meta property="og:url" content="http://yoursite.com/2017/04/28/预解释/index.html">
 <meta property="og:site_name" content="DONGPANDA">
-<meta property="og:description" content="预解释我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行 举个栗子：  console.log(obj);//undefined  var obj={nam">
-<meta property="og:updated_time" content="2017-04-28T10:39:38.078Z">
+<meta property="og:description" content="预解释我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行举个栗子：…  console.log(obj);//undefined  var obj={nam">
+<meta property="og:updated_time" content="2017-04-28T10:43:39.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="预解释">
-<meta name="twitter:description" content="预解释我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行 举个栗子：  console.log(obj);//undefined  var obj={nam">
+<meta name="twitter:description" content="预解释我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行举个栗子：…  console.log(obj);//undefined  var obj={nam">
 
 
 
@@ -429,9 +429,7 @@
         <h1 id="预解释"><a href="#预解释" class="headerlink" title="预解释"></a>预解释</h1><p>我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。</p>
 <h2 id="预解释的定义"><a href="#预解释的定义" class="headerlink" title="预解释的定义"></a>预解释的定义</h2><p>在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行</p>
 <ul>
-<li><p>之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行</p>
-<h5 id="举个栗子："><a href="#举个栗子：" class="headerlink" title="举个栗子："></a>举个栗子：</h5><p>  console.log(obj);//undefined<br>  var obj={name:’dong’};<br>  console.log(fn);//function fn(){}<br>  function fn() {<br>  }<br>  //var obj对obj进行了声明但未定义，函数fn声明并且定义</p>
-</li>
+<li>之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行<h5 id="举个栗子："><a href="#举个栗子：" class="headerlink" title="举个栗子："></a>举个栗子：</h5>…<br>  console.log(obj);//undefined<br>  var obj={name:’dong’};<br>  console.log(fn);//function fn(){}<br>  function fn() {<br>  }<br>  //var obj对obj进行了声明但未定义，函数fn声明并且定义</li>
 </ul>
 <pre><code>function d() {
     console.log(a);
@@ -445,23 +443,31 @@ var obj={
 }
 console.log(obj.a,obj.b);//&apos;dd&apos;,&apos;bb&apos;
 d();//1
-</code></pre><h2 id="预解释的特殊情况"><a href="#预解释的特殊情况" class="headerlink" title="预解释的特殊情况"></a>预解释的特殊情况</h2><ol>
+</code></pre><p>…</p>
+<h2 id="预解释的特殊情况"><a href="#预解释的特殊情况" class="headerlink" title="预解释的特殊情况"></a>预解释的特殊情况</h2><ol>
 <li>等号右边的不进行预解释（函数作为值赋给变量的时候）</li>
 <li>return后面的代码不进行但是需要预解释，而return的东西是要执行的但是不预解释</li>
 <li>自执行函数不进行预解释</li>
 <li>在条件中，不管条件是否成立都进行预解释，但是只声明，条件成立的时候先对函数体进行赋值（条件中预解释的时候，如果遇到相同的变量名进行声明就会报错）</li>
-<li>对于前面已经进行过声明的变量，不进行再次声明，但是需要定义<h2 id="函数中的预解释"><a href="#函数中的预解释" class="headerlink" title="函数中的预解释"></a>函数中的预解释</h2>闭包：函数在执行时会形成一个私有作用域（栈），使函数内部的变量不受外部干扰，这种机制叫做闭包，就是函数内部的变量外部获取不到（想要获取，return 出去），但是可以使用函数外部的变量<br>私有变量：一种是函数的形参，另一种是在函数内部进行与解释的变量<br>作用域链：当函数遇到一个变量的时候，首先先看看是不是自己的变量，如果不是就会向上一级作用域查找，直到找到全局，如果还没有就会报错，这种查找机制叫做作用域链，当前函数的堆内存在哪个作用域下开辟的，哪个作用域就是上级作用域<br>函数的执行过程：</li>
+<li>对于前面已经进行过声明的变量，不进行再次声明，但是需要定义<h2 id="函数中的预解释"><a href="#函数中的预解释" class="headerlink" title="函数中的预解释"></a>函数中的预解释</h2></li>
+</ol>
+<ul>
+<li>闭包：函数在执行时会形成一个私有作用域（栈），使函数内部的变量不受外部干扰，这种机制叫做闭包，就是函数内部的变量外部获取不到（想要获取，return 出去），但是可以使用函数外部的变量</li>
+<li>私有变量：一种是函数的形参，另一种是在函数内部进行与解释的变量</li>
+<li><p>作用域链：当函数遇到一个变量的时候，首先先看看是不是自己的变量，如果不是就会向上一级作用域查找，直到找到全局，如果还没有就会报错，这种查找机制叫做作用域链，当前函数的堆内存在哪个作用域下开辟的，哪个作用域就是上级作用域</p>
+</li>
+<li><p>函数的执行过程：</p>
+</li>
+</ul>
+<ol>
 <li>首先形成一个私有作用域</li>
 <li>如果有参数的话，要进行参数的赋值</li>
 <li>进行预解释</li>
-<li><p>函数体执行</p>
-<h5 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h5><p> var c=1,b=2;<br> function sum(c) {</p>
-<pre><code>var b=10;
+<li>函数体执行<h5 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h5>…<br> var c=1,b=2;<br> function sum(c) {<pre><code>var b=10;
 c++;
 b++;
 console.log(c,b)
-</code></pre><p> }<br> sum(c);//2 11<br> console.log(c,b);//1 2</p>
-</li>
+</code></pre> }<br> sum(c);//2 11<br> console.log(c,b);//1 2<br>…</li>
 </ol>
 
       
