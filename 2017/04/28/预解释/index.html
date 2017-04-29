@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="预解释(变量提升)我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行举个栗子：  1234567891011121314151617181920consol">
+<meta name="description" content="预解释(变量提升)我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定义，函数是声明定义都会进行举个栗子：  1234567891011121314151617181920consol">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="预解释">
 <meta property="og:url" content="http://yoursite.com/2017/04/28/预解释/index.html">
 <meta property="og:site_name" content="DONGPANDA">
-<meta property="og:description" content="预解释(变量提升)我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行举个栗子：  1234567891011121314151617181920consol">
-<meta property="og:updated_time" content="2017-04-29T02:09:46.829Z">
+<meta property="og:description" content="预解释(变量提升)我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定义，函数是声明定义都会进行举个栗子：  1234567891011121314151617181920consol">
+<meta property="og:updated_time" content="2017-04-29T02:17:49.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="预解释">
-<meta name="twitter:description" content="预解释(变量提升)我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行举个栗子：  1234567891011121314151617181920consol">
+<meta name="twitter:description" content="预解释(变量提升)我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。 预解释的定义在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行  之所以是或定义：var关键字的只进行声明，并不进行定义，函数是声明定义都会进行举个栗子：  1234567891011121314151617181920consol">
 
 
 
@@ -459,7 +459,7 @@
         <h2 id="预解释-变量提升"><a href="#预解释-变量提升" class="headerlink" title="预解释(变量提升)"></a>预解释(变量提升)</h2><p>我们经常听到说JS是一种解释型语言，边解释边执行，所谓解释我们理解为给后面的代码执行进行铺垫，也就是预解释。</p>
 <h2 id="预解释的定义"><a href="#预解释的定义" class="headerlink" title="预解释的定义"></a>预解释的定义</h2><p>在作用域形成之后，代码执行之前，对带有var关键字还有函数进行声明或定义，然后代码进行执行</p>
 <ul>
-<li>之所以是或定义：var关键字的只进行声明，并不进行定于，函数是声明定义都会进行<h5 id="举个栗子："><a href="#举个栗子：" class="headerlink" title="举个栗子："></a>举个栗子：</h5></li>
+<li>之所以是或定义：var关键字的只进行声明，并不进行定义，函数是声明定义都会进行<h5 id="举个栗子："><a href="#举个栗子：" class="headerlink" title="举个栗子："></a>举个栗子：</h5></li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(obj);<span class="comment">//undefined</span></div><div class="line"><span class="keyword">var</span> obj=&#123;<span class="attr">name</span>:<span class="string">'dong'</span>&#125;;</div><div class="line"><span class="built_in">console</span>.log(fn);<span class="comment">//function fn()&#123;&#125;</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">&#125;</div><div class="line"><span class="comment">//var obj对obj进行了声明但未定义，函数fn声明并且定义</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">d</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div><div class="line">d();<span class="comment">//undefined</span></div><div class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> obj=&#123;<span class="attr">a</span>:<span class="string">'bb'</span>&#125;;<span class="comment">//这步注释掉的话后面的obj.a执行时会报错，找不到a属性</span></div><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">    <span class="attr">a</span>:<span class="string">'dd'</span>,</div><div class="line">    <span class="attr">b</span>:obj.a<span class="comment">//定义的时候 先存再给地址，存的时候第二个obj还没定义完，所以输出obj.b-&gt;'bb',取第一个的</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj.a,obj.b);<span class="comment">//'dd','bb'</span></div><div class="line">d();<span class="comment">//1</span></div></pre></td></tr></table></figure>
 <h2 id="预解释的特殊情况"><a href="#预解释的特殊情况" class="headerlink" title="预解释的特殊情况"></a>预解释的特殊情况</h2><ul>
