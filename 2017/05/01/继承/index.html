@@ -97,12 +97,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/01/继承/index.html">
 <meta property="og:site_name" content="DONGPANDA">
 <meta property="og:description" content="继承原型继承类的继承，封装和多态  继承：子类继承父类的属性和方法 封装：将实现一定功能的代码封装成一个函数 多态：重写和重载，js中没有重载，只有重写  原型继承使我们js中最常用的一种方式，子类B想要继承父类A中的所有属性，只需要让B.prototype=new A;原型继承的特点：父类私有的加上公有的都继承到了子类原型上核心思想：原型继承并不是把父类中的属性和方法克隆一份给子类，而是让子类父">
-<meta property="og:image" content="http://yoursite.com/2017/05/01/继承/images/jc.jpg">
-<meta property="og:updated_time" content="2017-05-01T12:55:33.842Z">
+<meta property="og:image" content="http://yoursite.com/images/jc.jpg">
+<meta property="og:updated_time" content="2017-05-01T12:57:10.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承">
 <meta name="twitter:description" content="继承原型继承类的继承，封装和多态  继承：子类继承父类的属性和方法 封装：将实现一定功能的代码封装成一个函数 多态：重写和重载，js中没有重载，只有重写  原型继承使我们js中最常用的一种方式，子类B想要继承父类A中的所有属性，只需要让B.prototype=new A;原型继承的特点：父类私有的加上公有的都继承到了子类原型上核心思想：原型继承并不是把父类中的属性和方法克隆一份给子类，而是让子类父">
-<meta name="twitter:image" content="http://yoursite.com/2017/05/01/继承/images/jc.jpg">
+<meta name="twitter:image" content="http://yoursite.com/images/jc.jpg">
 
 
 
@@ -465,7 +465,7 @@
 <li>多态：重写和重载，js中没有重载，只有重写</li>
 </ul>
 <p>原型继承使我们js中最常用的一种方式，子类B想要继承父类A中的所有属性，只需要让B.prototype=new A;<br>原型继承的特点：父类私有的加上公有的都继承到了子类原型上<br>核心思想：原型继承并不是把父类中的属性和方法克隆一份给子类，而是让子类父类之间增加了原型链的连接，以后子类想要父类中的属性方法，需要一层层向上查找</p>
-<p><img src="images/jc.jpg" alt="原型继承图"></p>
+<p><img src="/images/jc.jpg" alt="原型继承图"></p>
 <h2 id="call继承"><a href="#call继承" class="headerlink" title="call继承"></a>call继承</h2><p>把父类私有的属性和方法弄一份一模一样的，作为子类私有的</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.x=<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line">A.prototype.getX=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	A.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> n=<span class="keyword">new</span> B;</div><div class="line"><span class="built_in">console</span>.log(n.x);<span class="comment">//100</span></div></pre></td></tr></table></figure>
 <h2 id="冒充对象继承"><a href="#冒充对象继承" class="headerlink" title="冒充对象继承"></a>冒充对象继承</h2><p>把父类私有的加公有的克隆一份一模一样的给子类私有</p>
