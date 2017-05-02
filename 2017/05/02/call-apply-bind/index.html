@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/02/call-apply-bind/index.html">
 <meta property="og:site_name" content="DONGPANDA">
 <meta property="og:description" content="Call  &amp;amp; Apply &amp;amp; bindcall所有函数都有一个属性length，表示参数的数量函数原型上的call方法是一个函数，至少要传一个参数，这个参数是用来改变call前面的方法的this的call用途：  改变this 让当前函数执行  123456789101112function fn()&amp;#123;	console.log(this);&amp;#125;Function.">
-<meta property="og:updated_time" content="2017-05-02T05:00:20.338Z">
+<meta property="og:updated_time" content="2017-05-02T07:57:11.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call & apply & bind">
 <meta name="twitter:description" content="Call  &amp;amp; Apply &amp;amp; bindcall所有函数都有一个属性length，表示参数的数量函数原型上的call方法是一个函数，至少要传一个参数，这个参数是用来改变call前面的方法的this的call用途：  改变this 让当前函数执行  123456789101112function fn()&amp;#123;	console.log(this);&amp;#125;Function.">
@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  783
+                  966
                 </span>
               
 
@@ -438,7 +438,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -468,6 +468,7 @@
 <li>call从第二个参数开始就是给前边的函数传的参数</li>
 </ul>
 <p>当使用函数.call.call(),两个及两个以上的call，你传的参数不是一个函数就会报错，因为只有函数的原型上才会有call这个方法<br>换句话说，你用两个及两个以上的call方法执行的时候就是相当于把你传进来的那个函数进行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//当有两个call时</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>,n);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params">m</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(m,<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">fn1.call(<span class="literal">null</span>,<span class="number">1</span>);<span class="comment">//window,1</span></div><div class="line">fn1.call.call(fn2,<span class="number">1</span>);<span class="comment">//undefined, Number</span></div><div class="line">fn1.call.call(fn2,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//3,Number</span></div><div class="line"><span class="comment">//call方法改变的是this 然后函数执行，所以是把(fn1.call)的this改为传的第一个参数，（fn1.call）的this是fn1，所以相当于变成(fn2.call),然后需要call前面的(fn2.call)的this执行，就是fn2执行，第二个参数是给call前面的fn.call传参，fn.call(1),然后相当于fn的this变成1，再执行</span></div><div class="line"><span class="comment">//总结：两个及两个以上的call(fn,obj,n,m.....),第一个参数必须是fn否则会报错，fn替换call的this，obj是替换fn的this，nm是给fn执行传的参数，没有就是undefined</span></div></pre></td></tr></table></figure>
 <h3 id="严格模式下"><a href="#严格模式下" class="headerlink" title="严格模式下"></a>严格模式下</h3><ul>
 <li>使用严格模式，函数执行的时候，前面没有.,undefied</li>
 <li>call()不传参数，传了个null  this就是null，undefined this就是undefined</li>
