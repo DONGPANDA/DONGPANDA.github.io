@@ -1,0 +1,1040 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ES6," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="ES6定义变量let 没有变量提升,不会预解释,存在死区 不能重复定义 虽然不进行预解释,但是在代码执行之前会把let定义的变量过滤一遍,一旦不合法,直接报错,代码不执行  块级作用域 {}包起来的就是一个块级作用域 应用场景,一是原来内部变量可能会覆盖全局变量 二是循环时结束后计数变量i变量泄露变为全局变量 {}包起来就是一个自执行函数  const const定义静态变量,不能修改值,必须要赋">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6总结(一)">
+<meta property="og:url" content="http://yoursite.com/2017/07/17/ES6总结-一/index.html">
+<meta property="og:site_name" content="DONGPANDA">
+<meta property="og:description" content="ES6定义变量let 没有变量提升,不会预解释,存在死区 不能重复定义 虽然不进行预解释,但是在代码执行之前会把let定义的变量过滤一遍,一旦不合法,直接报错,代码不执行  块级作用域 {}包起来的就是一个块级作用域 应用场景,一是原来内部变量可能会覆盖全局变量 二是循环时结束后计数变量i变量泄露变为全局变量 {}包起来就是一个自执行函数  const const定义静态变量,不能修改值,必须要赋">
+<meta property="og:updated_time" content="2017-07-17T07:34:57.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6总结(一)">
+<meta name="twitter:description" content="ES6定义变量let 没有变量提升,不会预解释,存在死区 不能重复定义 虽然不进行预解释,但是在代码执行之前会把let定义的变量过滤一遍,一旦不合法,直接报错,代码不执行  块级作用域 {}包起来的就是一个块级作用域 应用场景,一是原来内部变量可能会覆盖全局变量 二是循环时结束后计数变量i变量泄露变为全局变量 {}包起来就是一个自执行函数  const const定义静态变量,不能修改值,必须要赋">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'UIJDRLQW5U',
+      apiKey: '602e660b373a71869b214c5a20111e50',
+      indexName: '48f9d2d059357aa620fe4cbb7143a6d3',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/17/ES6总结-一/"/>
+
+
+
+
+
+  <title>ES6总结(一) | DONGPANDA</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7934fa8b31aed2e8999e688b02c4b3fa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/dongpanda"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DONGPANDA</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">前端   全栈   JS   娱乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/ES6总结-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dong Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DONGPANDA">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ES6总结(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T15:33:49+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/07/17/ES6总结-一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/07/17/ES6总结-一/" class="leancloud_visitors" data-flag-title="ES6总结(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,252
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><ul>
+<li>没有变量提升,不会预解释,存在死区</li>
+<li>不能重复定义</li>
+<li>虽然不进行预解释,但是在代码执行之前会把let定义的变量过滤一遍,一旦不合法,直接报错,代码不执行</li>
+</ul>
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><ul>
+<li>{}包起来的就是一个块级作用域</li>
+<li>应用场景,一是原来内部变量可能会覆盖全局变量</li>
+<li>二是循环时结束后计数变量i变量泄露变为全局变量</li>
+<li>{}包起来就是一个自执行函数</li>
+</ul>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><ul>
+<li>const定义静态变量,不能修改值,必须要赋值;</li>
+<li>不是布恩那个修改,基本数据类的话不能修改,如果时引用类,附的是地址,地址内的值可以修改</li>
+</ul>
+<h2 id="数组赋值"><a href="#数组赋值" class="headerlink" title="数组赋值"></a>数组赋值</h2><h3 id="数组结构赋值"><a href="#数组结构赋值" class="headerlink" title="数组结构赋值"></a>数组结构赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">    //    let a=0;</div><div class="line">    //    let b=1;</div><div class="line">    //    let c=2;</div><div class="line">    //let [a, b, c] = [0, 1, 2];</div><div class="line">    //console.log(a, b, c);//0,1,2</div><div class="line">    //    var ary=[1,2,3,4,5,6,7];</div><div class="line">    //    let[a,b,c]=ary;</div><div class="line">    //    console.log(a, b, c);//1,2,3</div><div class="line"></div><div class="line">    var ary = [1, 2];</div><div class="line">    let [a, b, c] = ary;</div><div class="line">    console.log(a, b, c);//1,2,undefined</div></pre></td></tr></table></figure>
+<h3 id="数组嵌套赋值"><a href="#数组嵌套赋值" class="headerlink" title="数组嵌套赋值"></a>数组嵌套赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let [x,y,[s],[[f]]]=[1,2,[3],[[4]]];</div><div class="line">   console.log(x, y, s, f);//1,2,3,4</div></pre></td></tr></table></figure>
+<h3 id="数组省略赋值"><a href="#数组省略赋值" class="headerlink" title="数组省略赋值"></a>数组省略赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var ary=[1,2,3,4,5];</div><div class="line">    let [a,,,b]=ary;</div><div class="line">    console.log(a, b);//1,4</div></pre></td></tr></table></figure>
+<h3 id="数组不定参数"><a href="#数组不定参数" class="headerlink" title="数组不定参数"></a>数组不定参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let [a,...b]=[1,2,3,4,5];</div><div class="line">    console.log(a, b);//1,[2,3,4,5]</div><div class="line">    let [,,x,,...y]=[1,2,3,4,5,6,7,8,9];</div><div class="line">    console.log(x, y);//3,[5,6,7,8,9]</div></pre></td></tr></table></figure>
+<h2 id="对象赋值"><a href="#对象赋值" class="headerlink" title="对象赋值"></a>对象赋值</h2><h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3><p>解构赋值左边变量名需和右边保持一致,也可以改变<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let &#123;n,m:m1&#125;=&#123;n:&quot;1&quot;,m:&quot;11&quot;&#125;;</div><div class="line"></div><div class="line">    console.log(n, m1);//&quot;1&quot; &quot;11&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="对象数组嵌套"><a href="#对象数组嵌套" class="headerlink" title="对象数组嵌套"></a>对象数组嵌套</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var obj1=&#123;s:&#123;n:&quot;1&quot;&#125;,n:[1,&quot;2&quot;,3,&quot;4&quot;],m:[[1]]&#125;;</div><div class="line">    let &#123;m:[a1],s:&#123;n&#125;,n:[,...a3]&#125;=obj1;</div><div class="line">    console.log(a1);</div><div class="line">    console.log(n);</div><div class="line">    console.log(a3);</div></pre></td></tr></table></figure>
+<h3 id="可以获取到类的属性"><a href="#可以获取到类的属性" class="headerlink" title="可以获取到类的属性"></a>可以获取到类的属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function fn(a,b) &#123;&#125;;</div><div class="line">    fn(1,2);</div><div class="line">    console.dir(fn);</div><div class="line">    let &#123;name,length,prototype:&#123;constructor:C&#125;&#125;=fn;</div><div class="line">    console.log(name);//&quot;fn&quot;</div><div class="line">    console.log(length);//2</div><div class="line">    console.log(C);</div></pre></td></tr></table></figure>
+<h3 id="可以设定默认值"><a href="#可以设定默认值" class="headerlink" title="可以设定默认值"></a>可以设定默认值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[x,y,z]=[1,2,3];</div><div class="line">    let [x=&quot;1&quot;,y=&quot;2&quot;,z]=[,2,3];</div><div class="line">    console.log(x, y, z);//1,2,3</div><div class="line">let &#123;x1:x=&quot;x&quot;,y=&quot;y&quot;,z=&quot;z&quot;&#125;=&#123;x1:&quot;rx&quot;,z:&quot;rz&quot;&#125;;</div><div class="line">    console.log(x);//&quot;rx&quot;;</div><div class="line">    console.log(y);//&quot;y&quot;</div><div class="line">    console.log(z);//&quot;rz&quot;</div></pre></td></tr></table></figure>
+<h2 id="函数问题"><a href="#函数问题" class="headerlink" title="函数问题"></a>函数问题</h2><h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">function fn1([x, , , y]) &#123;</div><div class="line">        console.log(arguments.length);</div><div class="line">        console.log(arguments[0].length);</div><div class="line">        console.log(x, y);</div><div class="line">    &#125;</div><div class="line">    fn1([1, 2, 3, 4, 5]);//1,5,1 4</div><div class="line">    fn1([1, , , 4,]);//1,4,1 4</div><div class="line"></div><div class="line">function fn4(x = 1, y = 2, z = 3) &#123;</div><div class="line">        console.log(x, y, z);</div><div class="line">    &#125;</div><div class="line">    fn4(10, undefined, 30);//10 2 30</div><div class="line">    fn4(10, null, 30);//10 null 30</div><div class="line"></div><div class="line">//函数参数所在的作用域是私有作用域,小括号内</div><div class="line">let x = 1;</div><div class="line">    function fn6(x, y = x) &#123;</div><div class="line">        console.log(x, y);</div><div class="line">    &#125;</div><div class="line">    fn6(&quot;2&quot;);//2 2</div><div class="line"></div><div class="line"> let a=1;</div><div class="line">    function fn7(n, m = a) &#123;</div><div class="line">        let a = 0;</div><div class="line">        console.log(m);</div><div class="line">    &#125;</div><div class="line">    fn7(1);//1</div><div class="line"></div><div class="line">let [x,y,z,m]=[1,2,3,4];</div><div class="line">    function fn8(x,y,z=x+m) &#123;</div><div class="line">        //x=10,y=20,z=10+4=14</div><div class="line">        console.log(x, y, z, m);</div><div class="line">    &#125;</div><div class="line">    fn8(10,20);</div></pre></td></tr></table></figure>
+<h3 id="for-of"><a href="#for-of" class="headerlink" title="for of"></a>for of</h3><p>类似与for in,只能遍历数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var ary=[1,2,3,4];</div><div class="line">    for(let val of ary)&#123;</div><div class="line">        //val是每一项的值</div><div class="line">        console.log(val);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h3><ul>
+<li><p>把数组转为非数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let ary=[1,2,3,4];</div><div class="line">   Math.max(1,2,3,4);</div><div class="line">  // Math.max.apply(null,ary);</div><div class="line">   let max=Math.max(...[1,2,3,4]);</div><div class="line">   console.log(max);</div></pre></td></tr></table></figure>
+</li>
+<li><p>合并数组</p>
+</li>
+<li>将非数组转为数组</li>
+<li>类数组转为数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let ps=document.getElementsByTagName(&quot;p&quot;);</div><div class="line">   function toArray(likeArray) &#123;</div><div class="line">       return [...likeArray]</div><div class="line">   &#125;</div><div class="line">   var pps=toArray(ps);</div><div class="line">   pps.forEach(function (item,index) &#123;</div><div class="line">       item.innerHTML++;</div><div class="line">   &#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="this问题"><a href="#this问题" class="headerlink" title="this问题"></a>this问题</h3><p>箭头函数中没有this,它指向的是定义时所在作用域的this,所以箭头函数的this是固定的,不能通过call,bind,apply等改变</p>
+<h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let fn=a=&gt;b=&gt;c=&gt;a+b+c;</div><div class="line">    console.log(fn(&quot;1&quot;)(&quot;2&quot;)(&quot;3&quot;));</div></pre></td></tr></table></figure>
+<h3 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h3><p>注意，Symbol函数前不能使用new命令，否则会报错。这是因为生成的Symbol是一个原始类型的值，不是对象<br>Symbol函数可以接受一个字符串作为参数，表示对Symbol实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 没有参数的情况</div><div class="line">var s1 = Symbol();</div><div class="line">var s2 = Symbol();</div><div class="line"></div><div class="line">s1 === s2 // false</div><div class="line"></div><div class="line">// 有参数的情况</div><div class="line">var s1 = Symbol(&quot;foo&quot;);</div><div class="line">var s2 = Symbol(&quot;foo&quot;);</div><div class="line"></div><div class="line">s1 === s2 // false</div></pre></td></tr></table></figure></p>
+<h4 id="作为属性名的Symbol"><a href="#作为属性名的Symbol" class="headerlink" title="作为属性名的Symbol"></a>作为属性名的Symbol</h4><p>注意，Symbol值作为对象属性名时，不能用点运算符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var mySymbol = Symbol();</div><div class="line"></div><div class="line">// 第一种写法</div><div class="line">var a = &#123;&#125;;</div><div class="line">a[mySymbol] = &apos;Hello!&apos;;</div><div class="line"></div><div class="line">// 第二种写法</div><div class="line">var a = &#123;</div><div class="line">  [mySymbol]: &apos;Hello!&apos;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 第三种写法</div><div class="line">var a = &#123;&#125;;</div><div class="line">Object.defineProperty(a, mySymbol, &#123; value: &apos;Hello!&apos; &#125;);</div><div class="line"></div><div class="line">// 以上写法都得到同样结果</div><div class="line">a[mySymbol] // &quot;Hello!&quot;</div><div class="line">//Symbol在类外部也是可以访问的，只是不会出现在for...in、for...of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()返回。但有一个Object.getOwnPropertySymbols方法，可以获取指定对象的所有Symbol属性名</div></pre></td></tr></table></figure></p>
+<h4 id="symbol-for"><a href="#symbol-for" class="headerlink" title="symbol.for()"></a>symbol.for()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let s1=Symbol.for(&apos;foo&apos;);</div><div class="line">let s2=Symbol.for(&apos;foo&apos;);</div><div class="line">s1==s2//true</div></pre></td></tr></table></figure>
+<h4 id="symbol-keyfor"><a href="#symbol-keyfor" class="headerlink" title="symbol.keyfor()"></a>symbol.keyfor()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let s1=Symbol.for(&apos;foo&apos;);</div><div class="line">Symbol.keyfor(s1)//foo,登记在全局供搜索,所以多次创建返回同一值</div><div class="line">var s2 = Symbol(&quot;foo&quot;);</div><div class="line">Symbol.keyFor(s2)//undefined,未登记,多次创建返回不同值</div></pre></td></tr></table></figure>
+<p>##字符串</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//includes() 判断字符串中有没用指定字符，有true，没有：false,第二个参数是开始查找的索引，默认是0</div><div class="line">    let str=&quot;abcdefg&quot;;</div><div class="line">    str.indexOf(&quot;a&quot;);//0</div><div class="line">    console.log(str.includes(&quot;a&quot;));//true</div><div class="line">    console.log(str.includes(&quot;a&quot;,2));//false</div><div class="line">    console.log(str.includes(&quot;A&quot;));//false</div><div class="line"></div><div class="line">    //startsWith(),是不是以某个字符作为开头</div><div class="line">    //endsWith(),是不是以某个字符作为结尾</div><div class="line">    console.log(str.startsWith(&quot;a&quot;));//true</div><div class="line">    console.log(str.endsWith(&quot;g&quot;));//true</div><div class="line"></div><div class="line">    //repeat(n),将字符串重复n次返回，原字符串不变</div><div class="line">    console.log(str.repeat(2),str);</div></pre></td></tr></table></figure>
+<h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><ul>
+<li>有特殊意义的字符 \ ` $ { }</li>
+<li>可以插入变量</li>
+<li>\用来换行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let str1=`&lt;div&gt;\</div><div class="line">          &lt;span&gt;span1&lt;/span&gt;\</div><div class="line">          &lt;span&gt;span2&lt;/span&gt;\</div><div class="line">     &lt;/div&gt;\</div><div class="line">     `;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from"></a>Array.from</h3><ul>
+<li>clone数组,原数组不变</li>
+<li>类数组转为数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">let divs=document.getElementsByTagName(&quot;div&quot;);</div><div class="line">    let oDivAry=Array.from(divs);</div><div class="line">    console.log(oDivAry);</div><div class="line">    //注意dom映射问题,可以改变样式,但是新添加的元素不会添加进去</div><div class="line">    document.body.appendChild(document.createElement(&apos;div&apos;));</div><div class="line">    console.log(divs,oDivAry);</div><div class="line">    oDivAry[1].style.height=&apos;100px&apos;;</div><div class="line">    oDivAry[1].style.backgroundColor=&apos;red&apos;;</div><div class="line">    //第二个参数可以传一个函数</div><div class="line">    let ary=[1,2,3,4,5];</div><div class="line">    let arr=Array.from(ary,function (item,index) &#123;</div><div class="line">        //console.log(arguments);</div><div class="line">        return ++item;</div><div class="line">    &#125;);</div><div class="line">    //返回值组成一个新数组,原数组不变</div><div class="line">    console.log(ary,arr);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="of"><a href="#of" class="headerlink" title="of"></a>of</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Array(2)//[undefined,undefined]</div><div class="line">Array.of(2)//[2]</div><div class="line">//of 将一组数值转化为数组,类似Array方法</div><div class="line">    console.dir(Array);</div><div class="line">    console.log(Array(),Array().length);</div><div class="line">    //注意:当调用构造函数时只传递给它一个数字参数，该构造函数将返回具有指定个数、元素为 undefined 的数组。</div><div class="line">    console.log(Array(1),Array(1).length);</div><div class="line">    console.log(Array(1,2),Array(1,2).length);</div><div class="line">    console.log(Array(1,2,3),Array(1,2,3).length);</div><div class="line"></div><div class="line">    console.log(Array.of(),Array.of().length);</div><div class="line">    console.log(Array.of(1),Array.of(1).length);</div><div class="line">    console.log(Array.of(1,2),Array.of(1,2).length);</div><div class="line">    console.log(Array.of(1,2,3),Array.of(1,2,3).length);</div></pre></td></tr></table></figure>
+<h3 id="copyWithin"><a href="#copyWithin" class="headerlink" title="copyWithin"></a>copyWithin</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">/Array.prototype.copyWithin(target,start,end)</div><div class="line">    //target （必需）：从该位置开始替换数据。</div><div class="line">    //start （可选）：从该位置开始读取数据，默认为 0 。如果为负值，表示倒数。</div><div class="line">    //end （可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。</div><div class="line">    //这三个参数都应该是数值，如果不是，会自动转为数值。</div><div class="line">    let arr = [1, 2, 3, 4, 5];</div><div class="line">    arr.copyWithin(0, 1, 5);</div><div class="line">    console.log(arr);</div><div class="line">    //  将 3 号位复制到 0 号位</div><div class="line">    let arr1 = [1, 2, 3, 4, 5].copyWithin(0, 3, 4);</div><div class="line">    console.log(arr1);// [4, 2, 3, 4, 5]</div><div class="line">    // -2 相当于 3 号位， -1 相当于 4 号位</div><div class="line">    let arr2 = [1, 2, 3, 4, 5].copyWithin(0, -2, -1);</div><div class="line">    console.log(arr2);// [4, 2, 3, 4, 5]</div><div class="line">    //  将 3 号位复制到 0 号位</div><div class="line">    let arr3 = [].copyWithin.call(&#123;length: 5, 3: 1&#125;, 0, 3);</div><div class="line">    console.log(arr3);// &#123;0: 1, 3: 1, length: 5&#125;</div></pre></td></tr></table></figure>
+<h3 id="find-amp-findIndex"><a href="#find-amp-findIndex" class="headerlink" title="find&amp;findIndex"></a>find&amp;findIndex</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let arr=[1,2,3,3,4,5];</div><div class="line">    //返回值是找到的那一项,没有就是undefined</div><div class="line">    let find=arr.find((item,index,arr)=&gt;&#123;</div><div class="line">        //item当前项,index:索引,arr:元素组</div><div class="line">        return item==0;</div><div class="line">    &#125;);</div><div class="line">    //返回值是找到的那一项的索引,没有就是-1</div><div class="line">    let findIndex=arr.findIndex((item,index,arr)=&gt;&#123;</div><div class="line">        return item==0;</div><div class="line">    &#125;);</div><div class="line">    console.log(find, findIndex);</div></pre></td></tr></table></figure>
+<h3 id="fill"><a href="#fill" class="headerlink" title="fill"></a>fill</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//Array.prototype.fill(value,start,end)</div><div class="line">    //value	必需。填充的值。</div><div class="line">    //start	可选。开始填充位置(默认值为0)</div><div class="line">    //end	可选。停止填充位置 (不包括该值,默认为 array.length)</div><div class="line">    let arr=[1,2,3,4,5];</div><div class="line">    arr.fill(&quot;a&quot;,0,4);</div><div class="line">    console.log(arr);//[&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, 5]</div></pre></td></tr></table></figure>
+<h3 id="for-of-1"><a href="#for-of-1" class="headerlink" title="for of"></a>for of</h3><h3 id="includes"><a href="#includes" class="headerlink" title="includes"></a>includes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//includes 代替indexOf,返回值是true和false</div><div class="line">    //之前的indexOf存在一些问题</div><div class="line">    //Infinity 属性用于存放表示正无穷大的数值。</div><div class="line">    //[补充说明]</div><div class="line">    //无法使用 for/in 循环来枚举 Infinity 属性，也不能用 delete 运算符来删除它。</div><div class="line">    //Infinity 不是常量，可以把它设置为其他值。</div><div class="line">    let arr=[NaN,Infinity,&apos;a&apos;,0];</div><div class="line">    //在indexOf 中使用的是===绝对相等</div><div class="line">    console.log(arr.indexOf(NaN));//-1 认为NaN跟任何值都不相等</div><div class="line">    // 但是实际上是存在的</div><div class="line">    console.log(arr.includes(NaN));</div><div class="line"></div><div class="line">    //跟indexOf一样第二个参数可选,includes(value,formIndex)</div><div class="line">    // formIndex:表示开始查找的索引。</div><div class="line">    //1.如果为负值，则按升序从 ary.length + fromIndex 的索引开始搜索。默认为 0。</div><div class="line">    //2.如果fromIndex 大于等于数组长度 ，则返回 false 。该数组不会被搜索。</div><div class="line">    //3.如果 fromIndex 为负值，计算出的索引将作为开始搜索的位置。如果计算出的索引小于 0，则整个数组都会被搜索。</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/reward wx.jpg" alt="Dong Wang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/reward zfb.jpg" alt="Dong Wang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/07/高程三21章Ajax与Comet-学习笔记/" rel="prev" title="高程三21章Ajax与Comet---学习笔记">
+                高程三21章Ajax与Comet---学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tx.jpg"
+               alt="Dong Wang" />
+          <p class="site-author-name" itemprop="name">Dong Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">围城</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/DONGPANDA" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6"><span class="nav-number">1.</span> <span class="nav-text">ES6</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义变量"><span class="nav-number">1.1.</span> <span class="nav-text">定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let"><span class="nav-number">1.1.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-number">1.1.3.</span> <span class="nav-text">const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组赋值"><span class="nav-number">1.2.</span> <span class="nav-text">数组赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组结构赋值"><span class="nav-number">1.2.1.</span> <span class="nav-text">数组结构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组嵌套赋值"><span class="nav-number">1.2.2.</span> <span class="nav-text">数组嵌套赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组省略赋值"><span class="nav-number">1.2.3.</span> <span class="nav-text">数组省略赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组不定参数"><span class="nav-number">1.2.4.</span> <span class="nav-text">数组不定参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象赋值"><span class="nav-number">1.3.</span> <span class="nav-text">对象赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象解构赋值"><span class="nav-number">1.3.1.</span> <span class="nav-text">对象解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象数组嵌套"><span class="nav-number">1.3.2.</span> <span class="nav-text">对象数组嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以获取到类的属性"><span class="nav-number">1.3.3.</span> <span class="nav-text">可以获取到类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以设定默认值"><span class="nav-number">1.3.4.</span> <span class="nav-text">可以设定默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数问题"><span class="nav-number">1.4.</span> <span class="nav-text">函数问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">1.4.1.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-of"><span class="nav-number">1.4.2.</span> <span class="nav-text">for of</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展运算符"><span class="nav-number">1.4.3.</span> <span class="nav-text">拓展运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this问题"><span class="nav-number">1.4.4.</span> <span class="nav-text">this问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高阶函数"><span class="nav-number">1.4.5.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symbol"><span class="nav-number">1.4.6.</span> <span class="nav-text">symbol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为属性名的Symbol"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">作为属性名的Symbol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#symbol-for"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">symbol.for()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#symbol-keyfor"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">symbol.keyfor()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.4.7.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板字符串"><span class="nav-number">1.4.8.</span> <span class="nav-text">模板字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.5.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-from"><span class="nav-number">1.5.1.</span> <span class="nav-text">Array.from</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#of"><span class="nav-number">1.5.2.</span> <span class="nav-text">of</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copyWithin"><span class="nav-number">1.5.3.</span> <span class="nav-text">copyWithin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find-amp-findIndex"><span class="nav-number">1.5.4.</span> <span class="nav-text">find&findIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fill"><span class="nav-number">1.5.5.</span> <span class="nav-text">fill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-of-1"><span class="nav-number">1.5.6.</span> <span class="nav-text">for of</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#includes"><span class="nav-number">1.5.7.</span> <span class="nav-text">includes</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    <div id="music163player">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=1&id=34780271&auto=0&height=90"></iframe>
+    </div>
+    </div>
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dong Wang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "426257340f484d65b2de357c3156d11e",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8I3V59W4PStfPOULPXg7BphR-gzGzoHsz", "3BoOMYpAgwlbWns3lbtbmYHl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
