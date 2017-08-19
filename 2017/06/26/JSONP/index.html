@@ -458,7 +458,7 @@
 <li>服务器接收到你的请求后,需要进行特殊处理,将你出进来的函数名和他需要给你的数据拼接成一个字符串 例如:我们传递进去的函数名是fn,加上他准备好的数据’fn([{“name”:”dong”}])’</li>
 <li>最后服务器将准备的数据通过http协议返回给我们客户端,客户端发现其实就是让我们的fn执行而且还给fn传递了参数,那些数据就是我们想要的</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//JSONP方式是get请求方式</span></div><div class="line">	&lt;script&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ff</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(result);</div><div class="line">    &#125;</div><div class="line">    ff();</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://matchweb.sports.qq.com/kbs/hotMatchList?callback=ff"</span>&gt;&lt;/script&gt;</div><div class="line"><span class="comment">//腾讯服务器就会接收到请求,去查找参数callbck的值,比如我们这里传的ff,然后进行解析赋值 'ff(&#123;"name":"aa","age":"12")' 然后把字符串返回给客户端,客户端让ff执行</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//JSONP方式是get请求方式</span></div><div class="line">	&lt;script&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ff</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(result);</div><div class="line">    &#125;</div><div class="line">    ff();</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://matchweb.sports.qq.com/kbs/hotMatchList?callback=ff"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"><span class="comment">//腾讯服务器就会接收到请求,去查找参数callbck的值,比如我们这里传的ff,然后进行解析赋值 'ff(&#123;"name":"aa","age":"12")' 然后把字符串返回给客户端,客户端让ff执行</span></div></pre></td></tr></table></figure>
 <h3 id="AJAX和JSONP区别"><a href="#AJAX和JSONP区别" class="headerlink" title="AJAX和JSONP区别"></a>AJAX和JSONP区别</h3><p>一个同源一个非同源,可以理解为跨域不跨域,跨域方式有很多种,只是JSONP最常用</p>
 <h3 id="为什么不同域之间有限制"><a href="#为什么不同域之间有限制" class="headerlink" title="为什么不同域之间有限制"></a>为什么不同域之间有限制</h3><p>所有的现代web浏览器在网络连接的时候会强制执行一个安全限制,其中就包括调用XMLHttpRequest.此安全限制阻止脚本或者应用程序连接任何其他的不是来自本域的web服务(IE下可通过修改开启选项来允许跨域请求).如果你的web程序和程序说使用的XML数据来自同一服务器,那么它将不会遵循这个安全限制.<br>但是,如果你的web应用程序在一个web服务器上而web服务数据请求另外一个如Yahoo! Web Service这样的服务器,那么服务器会从根本上限制本次连接.<br>这个问题有很多解决方案,(proxy代理)就是在你的web服务器上安装一个代理.你可以通过调用自己的web服务代理来代替直接调用web服务的XMLHttpRequest对请求.然后代理传递请求到web服务,并且返回客户端应用程序所需要的数据.因为连接出自你自己的服务器,数据来自你自己的服务器,所以你的浏览器不会受到什么限制.</p>
 
@@ -616,7 +616,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -638,7 +638,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
